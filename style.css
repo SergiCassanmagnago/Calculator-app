@@ -63,7 +63,6 @@ body, html{
     background-color: rgba(130, 215, 255, 0.555);
     display: grid;
     grid-template-columns: repeat(5, 20%);
-    justify-content: center;
     border-bottom: 1px solid rgba(175, 83, 179, 0.75);
     border-right: 1px solid rgba(175, 83, 179, 0.75);
 }
@@ -71,7 +70,6 @@ body, html{
 button{
     background-color: rgba(130, 215, 255, 0.555);
     border: none;
-    max-width: 100px;
     height: 75px;
     border-top: 1px solid rgba(175, 83, 179, 0.75);
     border-left: 1px solid rgba(175, 83, 179, 0.75);
