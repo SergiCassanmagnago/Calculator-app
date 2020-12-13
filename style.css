@@ -8,7 +8,7 @@
 body, html{
     color: rgb(66, 66, 66);
     margin: 0%;
-    overflow: hidden;
+    overflow-x: hidden;
     height: 100%;
     background: url(./IMAGES/photo-1579546929518-9e396f3cc809.jpg);
     background-size: cover;
@@ -34,12 +34,14 @@ body, html{
 
 .screen{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     min-height: 100px;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 1% 0%;
     border-bottom: 1px rgba(0, 0, 0, 0.7) solid;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .op{
@@ -90,7 +92,7 @@ button:hover{
 }
 
 .equals{
-    max-width: 200px;
+    width: 100%;
     padding: 20px 20%;
     grid-column: span 2;
 }

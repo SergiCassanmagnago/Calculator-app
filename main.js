@@ -70,28 +70,31 @@ function changeop(sig) {
 
 
 for(let i = 0; i < nums.length; i++)nums[i].addEventListener('click', e => {
-    if(equal){
-        equal = false;
-        res.textContent = nums[i].textContent;
-        oper.textContent = '';
-        op_clear();
-    }
-    else if(change){
-        change = false;
-        operations.decimal = [false, 0];
-        res.textContent = nums[i].textContent;
-        operations.secondop = 0;
-    }
-    else res.textContent += nums[i].textContent;
+    if(!err){
+        if(equal){
+            equal = false;
+            res.textContent = nums[i].textContent;
+            oper.textContent = '';
+            op_clear();
+        }
+        else if(change){
+            change = false;
+            operations.decimal = [false, 0];
+            res.textContent = nums[i].textContent;
+            operations.secondop = 0;
+        }
+        else res.textContent += nums[i].textContent;
 
-    if(operations.decimal[0]){
-        operations.secondop += Math.pow(10, operations.decimal[1])*parseInt(nums[i].textContent);
-        operations.decimal[1]--;
+        if(operations.decimal[0]){
+            operations.secondop += Math.pow(10, operations.decimal[1])*parseInt(nums[i].textContent);
+            operations.decimal[1]--;
+        }
+        else{
+            operations.secondop *= 10;
+            operations.secondop += parseInt(nums[i].textContent);
+        }
     }
-    else{
-        operations.secondop *= 10;
-        operations.secondop += parseInt(nums[i].textContent);
-    }
+    
 });
 
 a.addEventListener('click', e => {
@@ -114,14 +117,15 @@ d.addEventListener('click', e => {
 
 
 eq.addEventListener('click', e => {
-    if(!equal){
-        if((operations.operation == '÷' && operations.secondop == 0)||(operations.operation == '^' && operations.secondop > 10)){
+    if(!equal && !err){
+        if(operations.operation == '÷' && operations.secondop == 0){
             res.textContent = 'Math Error';
             op_clear();
             oper.textContent = '';
             err = true;
         }
-        else switch(operations.operation){
+        else{
+            switch(operations.operation){
                 case '*': 
                     operations.firstop *= operations.secondop;
                 break;
@@ -140,11 +144,12 @@ eq.addEventListener('click', e => {
                 default:
                     operations.firstop = operations.secondop;
                 break;
-        }
-        oper.textContent += operations.secondop;
-        oper.textContent += '=';
-        res.textContent = operations.firstop;
-        equal = true; change = false;
+            }
+            oper.textContent += operations.secondop;
+            oper.textContent += '=';
+            res.textContent = operations.firstop;
+            equal = true; change = false;
+        } 
     }
 })
 
